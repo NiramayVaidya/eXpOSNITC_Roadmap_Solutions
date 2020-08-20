@@ -1,0 +1,6 @@
+// print "EXCEPTION";
+print "EC ->";
+print EC;
+print "EIP ->";
+print EIP;
+halt;
