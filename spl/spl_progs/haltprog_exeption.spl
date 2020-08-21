@@ -3,4 +3,6 @@ print "EC ->";
 print EC;
 print "EIP ->";
 print EIP;
+print "EPN ->";
+print EPN;
 halt;
