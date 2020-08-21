@@ -1,0 +1,23 @@
+alias currentPID R0;
+currentPID = [SYSTEM_STATUS_TABLE + 1];
+
+[PROCESS_TABLE + currentPID * 16 + 4] = TERMINATED;
+
+alias terminated_count R1;
+terminated_count = 0;
+alias PID R2;
+PID = 1;
+while (PID <= 15) do
+        if ([PROCESS_TABLE + PID * 16 + 4] == TERMINATED) then
+                terminated_count = terminated_count + 1;
+        endif;
+        PID = PID + 1;
+endwhile;
+
+if (terminated_count == 15) then
+        halt;
+else
+        // print terminated_count;
+        // print "CALL SCHEDULER";
+        call SCHEDULER;
+endif;

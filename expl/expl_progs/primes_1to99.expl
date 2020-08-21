@@ -1,0 +1,29 @@
+int main()
+{
+decl
+    int num, isprime, iter, temp;
+enddecl
+begin
+    num = 5;
+    temp = exposcall("Write", -2, "PRIME");
+    temp = exposcall("Write", -2, 3);
+    while (num <= 99) do
+        isprime = 1;
+        iter = 3;
+        while (iter < (num / 2)) do
+            if ((num % iter) == 0) then
+                isprime = 0;
+                break;
+            endif;
+            iter = iter + 2;
+        endwhile;
+        if (isprime == 1) then
+            temp = exposcall("Write", -2, "PRIME");
+            temp = exposcall("Write", -2, num);
+        endif;
+        num = num + 2;
+        isprime = 1;
+    endwhile;
+    return 0;
+end
+}
