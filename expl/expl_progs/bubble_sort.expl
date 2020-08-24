@@ -1,0 +1,44 @@
+decl
+    int arr[5];
+enddecl
+
+int main()
+{
+decl
+    int temp, count, swap, flag;
+    int i, j;
+enddecl
+begin
+    count = 5;
+    i = 0;
+    while (i < count) do
+        temp = exposcall("Read", -1, arr[i]);
+        i = i + 1;
+    endwhile;
+    i = 0;
+    while (i < count) do
+        j = 0;
+        flag = 0;
+        while (j < (count - i - 1)) do
+            if (arr[j + 1] < arr[j]) then
+                swap = arr[j + 1];
+                arr[j + 1] = arr[j];
+                arr[j] = swap;
+                flag = 1;
+            endif;
+            j = j + 1;
+        endwhile;
+        if (flag == 0) then
+            i = count;
+        else
+            i = i + 1;
+        endif;
+    endwhile;
+    i = 0;
+    while (i < count) do
+        temp = exposcall("Write", -2, arr[i]);
+        i = i + 1;
+    endwhile;
+    return 0;
+end
+}
