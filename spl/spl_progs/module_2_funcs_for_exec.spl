@@ -1,0 +1,51 @@
+// breakpoint;
+
+alias functionNum R1;
+alias terminatePID R2;
+
+if (functionNum == 1) then
+    [SYSTEM_STATUS_TABLE + 3] = [SYSTEM_STATUS_TABLE + 3] + 1;
+    
+    while ([SYSTEM_STATUS_TABLE + 2] == 0) do
+        [PROCESS_TABLE + terminatePID * 16 + 4] = WAIT_MEM;
+        
+        multipush(R1, R2);
+        
+        call SCHEDULER;
+        
+        multipop(R1, R2);
+    endwhile;
+    
+    [SYSTEM_STATUS_TABLE + 3] = [SYSTEM_STATUS_TABLE + 3] - 1;
+    [SYSTEM_STATUS_TABLE + 2] = [SYSTEM_STATUS_TABLE + 2] - 1;
+    
+    alias iter R3;
+    iter = 76;
+    while (iter < NUM_MEM_PAGES) do
+        if ([MEMORY_FREE_LIST + iter] == 0) then
+            [MEMORY_FREE_LIST + iter] = 1;
+            R0 = iter;
+            break;
+        endif;
+        iter = iter + 1;
+    endwhile;
+endif;
+
+if (functionNum == 2) then
+    [MEMORY_FREE_LIST + R2] = [MEMORY_FREE_LIST + R2] - 1;
+    if ([MEMORY_FREE_LIST + R2] == 0) then
+        [SYSTEM_STATUS_TABLE + 2] = [SYSTEM_STATUS_TABLE + 2] + 1;
+    endif;
+    alias PID R3;
+    PID = 0;
+    while (PID < MAX_PROC_NUM) do
+        if ([PROCESS_TABLE + PID * 16 + 1] != -1 && [PROCESS_TABLE + PID * 16 + 4] == WAIT_MEM) then
+            [PROCESS_TABLE + PID * 16 + 4] = READY;
+        endif;
+        PID = PID + 1;
+    endwhile;
+endif;
+
+// breakpoint;
+
+return;

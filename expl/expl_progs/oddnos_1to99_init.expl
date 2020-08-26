@@ -4,10 +4,11 @@ decl
     int temp, num;
 enddecl
 begin
+	breakpoint;
     num = 1;
     while (num <= 99) do
         if ((num % 2) == 1) then
-            temp = exposcall("Write" , -2, num);
+            temp = exposcall("Write", -2, num);
         endif;
         num = num + 1;
     endwhile;

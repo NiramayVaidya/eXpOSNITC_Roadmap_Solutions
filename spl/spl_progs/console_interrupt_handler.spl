@@ -10,11 +10,11 @@ reqPID = [TERMINAL_STATUS_TABLE + 1];
 alias process_table_entry R1;
 process_table_entry = PROCESS_TABLE + reqPID * 16;
 
-breakpoint;
+// breakpoint;
 
 [process_table_entry + 8] = P0;
 
-breakpoint;
+// breakpoint;
 
 multipush(R0, R1);
 

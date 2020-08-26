@@ -12,13 +12,13 @@ process_table_entry = PROCESS_TABLE + currentPID * 16;
 
 alias newPID R2;
 
-newPID = (currentPID + 1) % 16;
+newPID = (currentPID + 1) % MAX_PROC_NUM;
 alias new_process_state R4;
 new_process_state = [PROCESS_TABLE + newPID * 16 + 4];
 alias actualPID R5;
 actualPID = [PROCESS_TABLE + newPID * 16 + 1];
 while ((new_process_state != CREATED && new_process_state != READY) || actualPID == -1) do
-	newPID = (newPID + 1) % 16;
+	newPID = (newPID + 1) % MAX_PROC_NUM;
 	if (newPID == currentPID) then
 		newPID = 0;
 		break;

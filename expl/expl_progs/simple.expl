@@ -1,0 +1,7 @@
+int main()
+{
+begin
+	breakpoint;
+	return 0;
+end
+}
