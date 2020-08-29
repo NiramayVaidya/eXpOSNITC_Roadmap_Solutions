@@ -1,0 +1,139 @@
+// Load the disk interrupt routine/handler
+loadi(6, 19);
+loadi(7, 20);
+
+// Load INT 9
+loadi(20, 33);
+loadi(21, 34);
+
+// Load module 1 i.e. the process manager module
+loadi(42, 55);
+loadi(43, 56);
+
+// Load module 2 i.e. the memory manager module
+loadi(44, 57);
+loadi(45, 58);
+
+// Load the inode table
+loadi(59, 3);
+loadi(60, 4);
+
+// Load the console interrupt routine/handler
+loadi(8, 21);
+loadi(9, 22);
+
+// Load INT 6
+loadi(14, 27);
+loadi(15, 28);
+
+// Load module 0 i.e. the resource manager module
+loadi(40, 53);
+loadi(41, 54);
+
+// Load module 4 i.e. the device manager module
+loadi(48, 61);
+loadi(49, 62);
+
+// Load module 5 i.e. the scheduler module
+loadi(50, 63);
+loadi(51, 64);
+
+// Load INT 7
+loadi(16, 29);
+loadi(17, 30);
+
+// Load the timer interrupt routine/handler
+loadi(4, 17);
+loadi(5, 18);
+
+// Load the library
+loadi(63, 13);
+loadi(64, 14);
+
+// Load init
+loadi(65, 7);
+loadi(66, 8);
+
+// Load INT 10
+loadi(22, 35);
+loadi(23, 36);
+
+// Load the exception handler
+loadi(2, 15);
+loadi(3, 16);
+
+// For init, PID = 1
+PTBR = PAGE_TABLE_BASE + 20;
+PTLR = 10;
+
+// Library
+[PTBR + 0] = 63;
+[PTBR + 1] = "0100";
+[PTBR + 2] = 64;
+[PTBR + 3] = "0100";
+
+// Heap
+[PTBR + 4] = 78;
+[PTBR + 5] = "0110";
+[PTBR + 6] = 79;
+[PTBR + 7] = "0110";
+
+// Code
+[PTBR + 8] = 65;
+[PTBR + 9] = "0100";
+[PTBR + 10] = 66;
+[PTBR + 11] = "0100";
+[PTBR + 12] = -1;
+[PTBR + 13] = "0000";
+[PTBR + 14] = -1;
+[PTBR + 15] = "0000";
+
+// Stack
+[PTBR + 16] = 76;
+[PTBR + 17] = "0110";
+[PTBR + 18] = 77;
+[PTBR + 19] = "0110";
+
+// For init
+[PROCESS_TABLE + 16 + 1] = 1;
+[PROCESS_TABLE + 16 + 4] = CREATED;
+[PROCESS_TABLE + 16 + 11] = 80;
+[PROCESS_TABLE + 16 + 13] = 8 * 512;
+[PROCESS_TABLE + 16 + 12] = 0;
+[PROCESS_TABLE + 16 + 14] = PAGE_TABLE_BASE + 20;
+[PROCESS_TABLE + 16 + 15] = 10;
+
+[76 * 512] = [65 * 512 + 1];
+
+alias iter R0;
+iter = 2;
+while (iter < MAX_PROC_NUM) do
+    [PROCESS_TABLE + iter * 16 + 4] = TERMINATED;
+    iter = iter + 1;
+endwhile;
+
+[TERMINAL_STATUS_TABLE] = ZERO;
+
+iter = 0;
+while (iter < 83) do
+    [MEMORY_FREE_LIST + iter] = 1;
+    iter = iter + 1;
+endwhile;
+
+while (iter < NUM_MEM_PAGES) do
+    [MEMORY_FREE_LIST + iter] = 0;
+    iter = iter + 1;
+endwhile;
+
+[SYSTEM_STATUS_TABLE + 3] = 0;
+[SYSTEM_STATUS_TABLE + 2] = 127 - 83 + 1;
+
+[DISK_STATUS_TABLE] = ZERO;
+
+iter = ([PROCESS_TABLE + 16 + 11] + 1) * 512 - 16;
+while(iter < (([PROCESS_TABLE + 16 + 11] + 1) * 512)) do
+    [iter] = -1;
+    iter = iter + 2;
+endwhile;
+
+return;

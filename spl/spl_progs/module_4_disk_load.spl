@@ -1,0 +1,76 @@
+alias functionNum R1;
+alias currentPID R2;
+
+if (functionNum == TERMINAL_WRITE) then
+    multipush(R1, R2, R3);
+    R1 = 8;
+
+    call RESOURCE_MANAGER;
+    
+    multipop(R1, R2, R3);
+    
+    print(R3);
+    
+    multipush(R1, R2, R3);
+    R1 = 9;
+
+    call RESOURCE_MANAGER;
+
+    multipop(R1, R2, R3);
+endif;
+
+if (functionNum == TERMINAL_READ) then
+    multipush(R1, R2, R3);
+    R1 = 8;
+
+    call RESOURCE_MANAGER;
+    
+    multipop(R1, R2, R3);
+    
+    read;
+    
+    [PROCESS_TABLE + currentPID * 16 + 4] = WAIT_TERMINAL;
+    
+    multipush(R1, R2, R3);
+    
+    call SCHEDULER;
+    
+    multipop(R1, R2, R3);
+    
+    alias logicalAddr R3;
+
+    alias physicalAddr R4;
+    physicalAddr = ([PTBR + 2 * (logicalAddr / 512)] * 512) + (logicalAddr % 512);
+
+    [physicalAddr] = [PROCESS_TABLE + currentPID * 16 + 8];
+endif;
+
+if (functionNum == DISK_LOAD) then
+    multipush(R1, R2, R3, R4);
+    R1 = 3;
+    
+    call RESOURCE_MANAGER;
+    
+    multipop(R1, R2, R3, R4);
+    
+    alias pageNum R3;
+    alias blockNum R4;
+    
+    [DISK_STATUS_TABLE] = ONE;
+    [DISK_STATUS_TABLE + 1] = ZERO;
+    [DISK_STATUS_TABLE + 2] = pageNum;
+    [DISK_STATUS_TABLE + 3] = blockNum;
+    [DISK_STATUS_TABLE + 4] = currentPID;
+    
+    load(pageNum, blockNum);
+    
+    [PROCESS_TABLE + currentPID * 16 + 4] = WAIT_DISK;
+    
+    multipush(R1, R2, R3, R4);
+    
+    call SCHEDULER;
+    
+    multipop(R1, R2, R3, R4);
+endif;
+
+return;
