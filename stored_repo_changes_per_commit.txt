@@ -1,0 +1,275 @@
+commit 179062091a589cd33dc37516c7576f4b8149619a
+Author: Niramay_Vaidya <niramay.vaidya@gmail.com>
+Date:   Mon Aug 31 16:48:32 2020 +0530
+
+    Added solutions for the intermediate stage 19 of the roadmap
+
+A	expl/expl_progs/load_singly_linked_list.expl
+A	expl/expl_progs/load_singly_linked_list.xsm
+M	expl/expl_progs/pid_1.xsm
+A	expl/expl_progs/singly_linked_list.expl
+A	expl/expl_progs/singly_linked_list.xsm
+A	expl/expl_progs/singly_linked_list_another.expl
+A	expl/expl_progs/singly_linked_list_another.xsm
+M	expl/expl_progs/user_defined_type_example.expl
+A	spl/spl_progs/boot_module_exec_exception_handling.spl
+A	spl/spl_progs/boot_module_exec_exception_handling.xsm
+A	spl/spl_progs/exception_handler.spl
+A	spl/spl_progs/exception_handler.xsm
+M	spl/spl_progs/haltprog_sched.spl
+A	spl/spl_progs/int9_exec_exception_handling.spl
+A	spl/spl_progs/int9_exec_exception_handling.xsm
+A	spl/spl_progs/module_1_funcs_for_exec_exception_handling.spl
+A	spl/spl_progs/module_1_funcs_for_exec_exception_handling.xsm
+A	spl/spl_progs/module_2_funcs_for_exec_exception_handling.spl
+A	spl/spl_progs/module_2_funcs_for_exec_exception_handling.xsm
+A	xfs-interface/batch_files/exec_exception_handling_config.bat
+
+commit df200b5bbe5b9a3b9993c7860737e83779420ecf
+Author: Niramay_Vaidya <niramay.vaidya@gmail.com>
+Date:   Sat Aug 29 15:17:04 2020 +0530
+
+    Added solutions for the intermediate stage 18 of the roadmap
+
+A	spl/spl_progs/boot_module_exec_disk_load.spl
+A	spl/spl_progs/boot_module_exec_disk_load.xsm
+A	spl/spl_progs/disk_interrupt_handler.spl
+A	spl/spl_progs/disk_interrupt_handler.xsm
+A	spl/spl_progs/int9_exec_disk_load.spl
+A	spl/spl_progs/int9_exec_disk_load.xsm
+A	spl/spl_progs/module_0_disk_handling.spl
+A	spl/spl_progs/module_0_disk_handling.xsm
+A	spl/spl_progs/module_4_disk_load.spl
+A	spl/spl_progs/module_4_disk_load.xsm
+A	xfs-interface/batch_files/exec_disk_load_config.bat
+
+commit 346fc509018dc903e1ec594df021ebb54d462577
+Author: Niramay_Vaidya <niramay.vaidya@gmail.com>
+Date:   Wed Aug 26 17:08:41 2020 +0530
+
+    Added solutions for the intermediate stage 17 of the roadmap
+
+A	expl/expl_progs/hello_world.expl
+A	expl/expl_progs/hello_world.xsm
+A	expl/expl_progs/load_oddnos_1to99_init.expl
+A	expl/expl_progs/load_oddnos_1to99_init.xsm
+M	expl/expl_progs/oddnos_1to99_init.expl
+M	expl/expl_progs/oddnos_1to99_init.xsm
+A	expl/expl_progs/pid_1.xsm
+A	expl/expl_progs/simple.expl
+A	expl/expl_progs/simple.xsm
+A	spl/spl_progs/boot_module_exec.spl
+A	spl/spl_progs/boot_module_exec.xsm
+M	spl/spl_progs/console_interrupt_handler.spl
+M	spl/spl_progs/console_interrupt_handler.xsm
+M	spl/spl_progs/haltprog_exeption.spl
+M	spl/spl_progs/haltprog_exeption.xsm
+A	spl/spl_progs/int9_exec.spl
+A	spl/spl_progs/int9_exec.xsm
+M	spl/spl_progs/module_0_terminal_handling.spl
+M	spl/spl_progs/module_0_terminal_handling.xsm
+A	spl/spl_progs/module_1_funcs_for_exec.spl
+A	spl/spl_progs/module_1_funcs_for_exec.xsm
+A	spl/spl_progs/module_2_funcs_for_exec.spl
+A	spl/spl_progs/module_2_funcs_for_exec.xsm
+M	spl/spl_progs/sched_module.spl
+M	spl/spl_progs/timer_idle_init_sched.spl
+M	spl/spl_progs/timer_idle_init_sched.xsm
+M	spl/spl_progs/timer_pid_2_sched.spl
+M	spl/spl_progs/timer_pid_2_sched.xsm
+M	spl/spl_progs/timer_rr_sched.spl
+M	spl/spl_progs/timer_rr_sched.xsm
+A	xfs-interface/batch_files/exec_config.bat
+
+commit 290a28ba534f061c88eb5050c17acf89a3d602d5
+Author: Niramay_Vaidya <niramay.vaidya@gmail.com>
+Date:   Mon Aug 24 13:29:34 2020 +0530
+
+    Added the solution for assignment 2 in the intermediate stage 16 of the roadmap
+
+M	spl/spl_progs/console_interrupt_handler.spl
+M	spl/spl_progs/console_interrupt_handler.xsm
+
+commit 2ceca4bfb563e45c6e35158dfe6b44058878d7ab
+Author: Niramay_Vaidya <niramay.vaidya@gmail.com>
+Date:   Mon Aug 24 13:23:25 2020 +0530
+
+    Fixed the indendation in some of the files in spl/spl_progs/
+
+M	spl/spl_progs/int6_read.spl
+M	spl/spl_progs/int7_resource_manage_terminal.spl
+M	spl/spl_progs/module_0_terminal_handling.spl
+M	spl/spl_progs/sched_module.spl
+
+commit 07f3e8217fd6b146c350266394d811fe0404246f
+Author: Niramay_Vaidya <niramay.vaidya@gmail.com>
+Date:   Mon Aug 24 13:02:46 2020 +0530
+
+    Added solutions for the intermediate step 16 of the roadmap
+
+A	expl/expl_progs/bubble_sort.expl
+A	expl/expl_progs/bubble_sort.xsm
+A	expl/expl_progs/gcd_euclidean.expl
+A	expl/expl_progs/gcd_euclidean.xsm
+A	spl/spl_progs/boot_module_console_input.spl
+A	spl/spl_progs/boot_module_console_input.xsm
+A	spl/spl_progs/console_interrupt_handler.spl
+A	spl/spl_progs/console_interrupt_handler.xsm
+A	spl/spl_progs/int6_read.spl
+A	spl/spl_progs/int6_read.xsm
+M	spl/spl_progs/int7_resource_manage_terminal.spl
+M	spl/spl_progs/int7_resource_manage_terminal.xsm
+A	spl/spl_progs/module_4_terminal_read_write.spl
+A	spl/spl_progs/module_4_terminal_read_write.xsm
+M	spl/spl_progs/timer_idle_init_sched.spl
+A	xfs-interface/batch_files/console_input_config.bat
+
+commit 1513ef8ee5f06d2d5f01b0b22c60fe3a69a485ad
+Author: Niramay_Vaidya <niramay.vaidya@gmail.com>
+Date:   Sat Aug 22 18:50:10 2020 +0530
+
+    Added solutions for the intermediate step 15 of the roadmap
+
+A	spl/spl_progs/boot_module_resource_manage_terminal.spl
+A	spl/spl_progs/boot_module_resource_manage_terminal.xsm
+A	spl/spl_progs/int7_resource_manage_terminal.spl
+A	spl/spl_progs/int7_resource_manage_terminal.xsm
+A	spl/spl_progs/module_0_terminal_handling.spl
+A	spl/spl_progs/module_0_terminal_handling.xsm
+A	spl/spl_progs/module_4_terminal_write.spl
+A	spl/spl_progs/module_4_terminal_write.xsm
+A	xfs-interface/batch_files/resource_manager_terminal.bat
+
+commit ba02e1d8117f2e8858f923cb8f3691e994c38c32
+Author: Niramay_Vaidya <niramay.vaidya@gmail.com>
+Date:   Fri Aug 21 22:15:20 2020 +0530
+
+    Added solutions for the intermediate stage 14 of the roadmap
+
+A	expl/expl_progs/evennos_1to99_pid_2_print.expl
+A	expl/expl_progs/evennos_1to99_pid_2_print.xsm
+A	expl/expl_progs/oddnos_1to99_init_print.expl
+A	expl/expl_progs/oddnos_1to99_init_print.xsm
+A	expl/expl_progs/pid_2_pr.xsm
+A	expl/expl_progs/pid_3_pr.xsm
+A	expl/expl_progs/primes_1to99.expl
+A	expl/expl_progs/primes_1to99.xsm
+A	spl/spl_progs/boot_module_rr_sched.spl
+A	spl/spl_progs/boot_module_rr_sched.xsm
+A	spl/spl_progs/boot_module_rr_sched_4procs.spl
+A	spl/spl_progs/boot_module_rr_sched_4procs.xsm
+A	spl/spl_progs/haltprog_sched.spl
+A	spl/spl_progs/haltprog_sched.xsm
+A	spl/spl_progs/sched_module.spl
+A	spl/spl_progs/sched_module.xsm
+A	spl/spl_progs/timer_rr_sched.spl
+A	spl/spl_progs/timer_rr_sched.xsm
+A	xfs-interface/batch_files/rr_sched_4procs_config.bat
+A	xfs-interface/batch_files/rr_sched_config.bat
+
+commit cf2dd98d2586459374ab74c434323df79e33bd39
+Author: Niramay_Vaidya <niramay.vaidya@gmail.com>
+Date:   Fri Aug 21 16:41:47 2020 +0530
+
+    Added solutions for the intermediate stage 13 of the roadmap
+
+A	expl/expl_progs/evennos_1to99_pid_2.expl
+A	expl/expl_progs/evennos_1to99_pid_2.xsm
+A	expl/expl_progs/oddnos_1to99_init.expl
+A	expl/expl_progs/oddnos_1to99_init.xsm
+A	expl/expl_progs/pid_2.xsm
+A	spl/spl_progs/boot_module.spl
+A	spl/spl_progs/boot_module.xsm
+A	spl/spl_progs/boot_module_with_pid_2.spl
+A	spl/spl_progs/boot_module_with_pid_2.xsm
+M	spl/spl_progs/haltprog_exeption.spl
+M	spl/spl_progs/haltprog_exeption.xsm
+A	spl/spl_progs/os_startup_boot_module.spl
+A	spl/spl_progs/os_startup_boot_module.xsm
+A	spl/spl_progs/timer_pid_2_sched.spl
+A	spl/spl_progs/timer_pid_2_sched.xsm
+A	xfs-interface/batch_files/pid_2_sched_config.bat
+
+commit ca21142ef6b0103fa5bcc630269e8651258b88c3
+Author: Niramay_Vaidya <niramay.vaidya@gmail.com>
+Date:   Thu Aug 20 18:54:01 2020 +0530
+
+    Modified .gitignore
+
+M	.gitignore
+A	expl/library_console_write.lib
+A	expl/library_console_write_using_BP.lib
+
+commit d6cd14dea1e44b30947ddc853863063f7c75ce32
+Author: Niramay_Vaidya <niramay.vaidya@gmail.com>
+Date:   Thu Aug 20 18:47:56 2020 +0530
+
+    Added solutions for the preparatory stages (1-12) of the roadmap
+
+A	expl/expl_progs/cubes_abi_compliant.xsm
+A	expl/expl_progs/idle.expl
+A	expl/expl_progs/idle.xsm
+A	expl/expl_progs/numbers.expl
+A	expl/expl_progs/numbers.xsm
+A	expl/expl_progs/numbers_idle.expl
+A	expl/expl_progs/numbers_idle.xsm
+A	expl/expl_progs/oddnos_1to100.expl
+A	expl/expl_progs/oddnos_1to100.xsm
+A	expl/expl_progs/print_first_20.xsm
+A	expl/expl_progs/squares.xsm
+A	expl/expl_progs/squares_abi_compliant.xsm
+A	expl/expl_progs/squares_print_terminal.xsm
+A	expl/expl_progs/test_int_7_write.xsm
+A	expl/expl_progs/user_defined_type_example.expl
+A	expl/expl_progs/user_defined_type_example.xsm
+A	spl/spl_progs/haltprog.spl
+A	spl/spl_progs/haltprog.xsm
+A	spl/spl_progs/haltprog_exeption.spl
+A	spl/spl_progs/haltprog_exeption.xsm
+A	spl/spl_progs/haltprog_halt.spl
+A	spl/spl_progs/haltprog_halt.xsm
+A	spl/spl_progs/helloworld.xsm
+A	spl/spl_progs/oddnos.spl
+A	spl/spl_progs/oddnos.xsm
+A	spl/spl_progs/os_startup.spl
+A	spl/spl_progs/os_startup.xsm
+A	spl/spl_progs/os_startup_abi_compliant.spl
+A	spl/spl_progs/os_startup_abi_compliant.xsm
+A	spl/spl_progs/os_startup_abi_compliant_timer_interrupt.spl
+A	spl/spl_progs/os_startup_abi_compliant_timer_interrupt.xsm
+A	spl/spl_progs/os_startup_abi_cpl_proc_tbl_entry_usr_pg.spl
+A	spl/spl_progs/os_startup_abi_cpl_proc_tbl_entry_usr_pg.xsm
+A	spl/spl_progs/os_startup_idle_init_concurrent.spl
+A	spl/spl_progs/os_startup_idle_init_concurrent.xsm
+A	spl/spl_progs/os_startup_int_7_wr_terminal.spl
+A	spl/spl_progs/os_startup_int_7_wr_terminal.xsm
+A	spl/spl_progs/print1to20.xsm
+A	spl/spl_progs/sample_int7.spl
+A	spl/spl_progs/sample_int7.xsm
+A	spl/spl_progs/sample_timer.spl
+A	spl/spl_progs/sample_timer.xsm
+A	spl/spl_progs/sample_timer_print_pid.spl
+A	spl/spl_progs/sample_timer_print_pid.xsm
+A	spl/spl_progs/sumofsquares20.spl
+A	spl/spl_progs/sumofsquares20.xsm
+A	spl/spl_progs/timer_idle_init_sched.spl
+A	spl/spl_progs/timer_idle_init_sched.xsm
+A	xfs-interface/batch_files/print_terminal.bat
+
+commit aed40df32b89886da9b72f0afc6f565b130eef36
+Author: Niramay Vaidya <niramay.vaidya@gmail.com>
+Date:   Thu Aug 20 18:43:49 2020 +0530
+
+    Updated README.md
+
+M	README.md
+
+commit 82d4fb2d08e60eabd926f78e21de5a3bef21fd9d
+Author: Niramay Vaidya <niramay.vaidya@gmail.com>
+Date:   Thu Aug 20 18:40:15 2020 +0530
+
+    Initial commit
+
+A	.gitignore
+A	LICENSE
+A	README.md
