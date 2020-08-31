@@ -17,7 +17,5 @@ endwhile;
 if (terminated_count == 15) then
         halt;
 else
-        // print terminated_count;
-        // print "CALL SCHEDULER";
         call SCHEDULER;
 endif;

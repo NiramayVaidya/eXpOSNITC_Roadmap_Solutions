@@ -1,0 +1,99 @@
+// breakpoint;
+
+[PROCESS_TABLE + [SYSTEM_STATUS_TABLE + 1] * 16 + 9] = -1;
+
+alias userSP R0;
+userSP = SP;
+
+[PROCESS_TABLE + ([SYSTEM_STATUS_TABLE + 1] * 16) + 13] = SP;
+
+SP = [PROCESS_TABLE + ([SYSTEM_STATUS_TABLE + 1] * 16) + 11] * 512 - 1;
+
+backup;
+multipush(EIP);
+
+if (EC != 0 || userSP == (PTLR * 512 - 1)) then
+    if (EC == 1) then
+        print("Illegal instruction");
+    endif;
+    if (EC == 2) then
+        print("Illegal memory access");
+    endif;
+    if (EC == 3) then
+        print("Arithmetic exception");
+    endif;
+    
+    multipush(R0);
+    R1 = EXIT_PROCESS;
+    
+    call PROCESS_MANAGER;
+    
+    multipop(R0);
+    
+    call SCHEDULER;
+endif;
+
+if (EPN == 4 || EPN == 5 || EPN == 6 || EPN == 7) then
+    alias blockNum R1;
+    blockNum = [DISK_MAP_TABLE + [SYSTEM_STATUS_TABLE + 1] * 10 + EPN];
+    
+    alias pageNum R2;
+    
+    multipush(R0, R1);
+    R1 = GET_CODE_PAGE;
+    R2 = blockNum;
+    
+    call MEMORY_MANAGER;
+    
+    pageNum = R0;
+    
+    multipop(R0, R1);
+    
+    PTBR = PAGE_TABLE_BASE + [SYSTEM_STATUS_TABLE + 1] * 20;
+    [PTBR + EPN * 2] = pageNum;
+    [PTBR + EPN * 2 + 1] = "1100";
+endif;
+
+if (EPN == 2 || EPN == 3) then
+    alias pageNum R1;
+    
+    multipush(R0);
+    R1 = GET_FREE_PAGE;
+    
+    call MEMORY_MANAGER;
+    
+    pageNum = R0;
+    
+    multipop(R0);
+    
+    PTBR = PAGE_TABLE_BASE + [SYSTEM_STATUS_TABLE + 1] * 20;
+    [PTBR + 4] = pageNum;
+    [PTBR + 5] = "1110";
+    
+    multipush(R0);
+    R1 = GET_FREE_PAGE;
+    
+    call MEMORY_MANAGER;
+    
+    pageNum = R0;
+    
+    multipop(R0);
+
+    [PTBR + 6] = pageNum;
+    [PTBR + 7] = "1110";    
+endif;
+
+[PROCESS_TABLE + [SYSTEM_STATUS_TABLE + 1] * 16 + 9] = 0;
+
+multipop(EIP);
+
+restore;
+SP = [PROCESS_TABLE + ([SYSTEM_STATUS_TABLE + 1] * 16) + 13];
+SP = SP + 1;
+
+alias physicalAddrSP R3;
+physicalAddrSP = ([PTBR + 2 * (SP / 512)] * 512) + (SP % 512);
+
+[physicalAddrSP] = EIP;
+
+ireturn;

@@ -1,0 +1,105 @@
+// breakpoint;
+
+alias functionNum R1;
+
+if (functionNum == GET_FREE_PAGE) then
+    [SYSTEM_STATUS_TABLE + 3] = [SYSTEM_STATUS_TABLE + 3] + 1;
+    
+    while ([SYSTEM_STATUS_TABLE + 2] == 0) do
+        [PROCESS_TABLE + [SYSTEM_STATUS_TABLE + 1] * 16 + 4] = WAIT_MEM;
+        
+        multipush(R1);
+        
+        call SCHEDULER;
+        
+        multipop(R1);
+    endwhile;
+    
+    [SYSTEM_STATUS_TABLE + 3] = [SYSTEM_STATUS_TABLE + 3] - 1;
+    [SYSTEM_STATUS_TABLE + 2] = [SYSTEM_STATUS_TABLE + 2] - 1;
+    
+    alias iter R3;
+    iter = 76;
+    while (iter < NUM_MEM_PAGES) do
+        if ([MEMORY_FREE_LIST + iter] == 0) then
+            [MEMORY_FREE_LIST + iter] = 1;
+            R0 = iter;
+            break;
+        endif;
+        iter = iter + 1;
+    endwhile;
+endif;
+
+if (functionNum == RELEASE_PAGE) then
+    [MEMORY_FREE_LIST + R2] = [MEMORY_FREE_LIST + R2] - 1;
+    if ([MEMORY_FREE_LIST + R2] == 0) then
+        [SYSTEM_STATUS_TABLE + 2] = [SYSTEM_STATUS_TABLE + 2] + 1;
+    endif;
+    alias PID R3;
+    PID = 0;
+    while (PID < MAX_PROC_NUM) do
+        if ([PROCESS_TABLE + PID * 16 + 1] != -1 && [PROCESS_TABLE + PID * 16 + 4] == WAIT_MEM) then
+            [PROCESS_TABLE + PID * 16 + 4] = READY;
+        endif;
+        PID = PID + 1;
+    endwhile;
+endif;
+
+if (functionNum == GET_CODE_PAGE) then
+    alias PID R3;
+    alias iter R4;
+    alias pageNum R5;
+    alias pageInMemory R6;
+    pageInMemory = 0;
+    PID = 0;
+    while (PID < MAX_PROC_NUM) do
+        iter = 0;
+        while (iter < 4) do
+            if ([DISK_MAP_TABLE + PID * 10 + 4 + iter] == R2) then
+                pageNum = [PAGE_TABLE_BASE + PID * 20 + 8 + iter * 2];
+                if (pageNum != -1) then
+                    pageInMemory = 1;
+                    R0 = pageNum;
+                    [MEMORY_FREE_LIST + pageNum] = [MEMORY_FREE_LIST + pageNum] + 1;
+                    PID = MAX_PROC_NUM - 1;
+                    break;
+                endif;
+            endif;
+            iter = iter + 1;
+        endwhile;
+        PID = PID + 1;
+    endwhile;
+    
+    if (pageInMemory == 0) then    
+        multipush(R1, R2, R3, R4, R6);
+        R1 = GET_FREE_PAGE;
+    
+        call MEMORY_MANAGER;
+    
+        pageNum = R0;
+        
+        multipop(R1, R2, R3, R4, R6);
+    
+        multipush(R1, R2, R3, R4, R5, R6);
+    
+        R4 = R2;
+    
+        R1 = DISK_LOAD;
+        R2 = [SYSTEM_STATUS_TABLE + 1];
+        R3 = pageNum;
+        
+        call DEVICE_MANAGER;
+        
+        multipop(R1, R2, R3, R4, R5, R6);
+        
+        R0 = pageNum;        
+    endif;
+endif;
+
+if (functionNum == RELEASE_BLOCK) then
+    [DISK_FREE_LIST + R2] = [DISK_FREE_LIST + R2] - 1;
+endif;
+
+// breakpoint;
+
+return;

@@ -1,15 +1,16 @@
 type
-    Student
+    student
     {
         str name;
         int marks;
     }
 endtype
+
 int main()
 {
     decl
         int temp;
-        Student s;
+        student s;
     enddecl
     begin
         temp = exposcall("Heapset");

@@ -1,0 +1,50 @@
+type
+    singlyLinkedList {
+        int data;
+        singlyLinkedList next;
+    }
+endtype
+
+int main()
+{
+    decl
+        int temp, n, iter;
+        singlyLinkedList head, ptr;
+    enddecl
+    begin
+        temp = exposcall("Heapset");
+        temp = exposcall("Read", -1, n);
+        head = exposcall("Alloc", 8);
+        temp = exposcall("Read", -1, head.data);
+        // head.next = null;
+        ptr = head.next;
+        iter = 0;
+        while (iter < (n - 1)) do
+            ptr = exposcall("Alloc", 8);
+            temp = exposcall("Read", -1, ptr.data);
+            // ptr.next = null;
+            ptr = ptr.next;
+            iter = iter + 1;
+        endwhile;
+        ptr = head;
+        iter = 0;
+        while (iter < n) do
+            temp = exposcall("Write", -2, ptr.data);
+            ptr = ptr.next;
+            iter = iter + 1;
+        endwhile;
+        ptr = head;
+        while (n > 1) do
+            iter = 0;
+            while (iter < (n - 1)) do
+                ptr = ptr.next;
+                iter = iter + 1;
+            endwhile;
+            temp = exposcall("Free", ptr);
+            n = n - 1;
+            ptr = head;
+        endwhile;
+        temp = exposcall("Free", head);
+        return 0;
+    end
+}
